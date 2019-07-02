@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action='yijie21.php' method='post'>
+        <div>
+            <label for="account">account</label>
+            <input type="text" name='account' id='account'>
+        </div>
+        <div>
+            <label for="password">password</label>
+            <input type="password" name='password' id='password'>
+        </div>
+        <div>
+            <label for="male">Male</label>
+            <input type="radio" name='genter' checked = true value = '0' id='male'>
+            <label for="female">Female</label>
+            <input type="radio" name='genter' value = '1' id='female'>
+        </div>
+        <div>         
+            <input type="checkbox" name="like[]" value='1' id="game">
+            <label for="game">玩電腦</label>
+            <input type="checkbox" name="like[]" value='2' id="phone">
+            <label for="phone">玩手機</label>
+            <input type="checkbox" name="like[]" value='3' id="dog">
+            <label for="dog">玩狗</label>
+            <input type="checkbox" name="like[]" value='4' id="water">
+            <label for="water">玩水</label>
+        </div>
+        <div>
+            <input type="submit" value='送出'>
+        </div>
+        
+    </form>
+</body>
+
+</html>
