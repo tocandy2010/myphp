@@ -2,8 +2,15 @@
 
     $player = [0=>[],1=>[],2=>[],3=>[]];
     $poker = range(0,51);
+    $t = 51;
     
-    shuffle($poker);
+    //shuffle($poker);
+
+    while($t>0){   //當t 等於0時 就只剩下一張牌不用再洗了
+        $r =rand(0,$t);   //產生亂數與最後一張牌互換
+        [$poker[$t],$poker[$r]] = [$poker[$r],$poker[$t]];  //利用值互換洗牌
+        $t--;//往前換每次前進一張
+    }
 
     $flag = 0;
     foreach($poker as $k=>$v){
