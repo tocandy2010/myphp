@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .ispnum{
+            background-color: tomato;
+        }
+        td{
+            width:250px;
+            text-align: center;
+            
+        }
+        #returnback{
+            cursor: pointer;
+            color:darkblue;
+            text-align: center;
+            font-weight:bold;
+            font-size:20px;
+            -webkit-user-select: none;
+        }
+        #returnback:active{
+            color:red;
+        }
+        #range{
+            color:darkred;
+            font-size: 20px;
+            font-weight:bold;
+        }
+
+    </style>
+</head>
+<body>
+        <p id='returnback'>重新查詢</p>
+        <p id="range">查詢範圍 : <?php echo "{$start} 至 {$end}"?></p>
+    <table border="1" width="100%">
+        <tr>
+            <?php  foreach($range as $k=>$v){
+                echo $k%8 === 0?"</tr><tr>":"";
+                if(in_array($v,$ispnum)){
+                    echo "<td class='ispnum'>$v</td>";
+                }else{
+                    echo "<td>$v</td>";
+                }
+            } ?>
+        </tr>
+    </table>
+    <script>
+        window.onload = function(){
+            document.getElementById("returnback").addEventListener('click',()=>{
+                window.location.href="http://localhost/myphp/Primenum.html";
+            })
+        }
+    </script>
+
+</body>
+</html>

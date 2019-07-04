@@ -7,7 +7,7 @@ function opd($path,$m= 1){
         if($row === '.' || $row === '..'){
             continue;
         }
-        echo str_repeat("-",$m).$row . "<br/>";
+        echo str_repeat("| - ",$m).$row . "<br/>";
         if(is_dir($path."\\".$row)){
             opd($path."\\".$row,$m+1);
         }
