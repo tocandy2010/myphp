@@ -1,3 +1,36 @@
+<?php
+include_once('./sql.php');
+
+if(isset($_POST['account'])){
+    $account = $_POST['account'];
+    $pass = $_POST['pass'];
+    $repass = $_POST['repass'];
+    $realname = $_POST['realname'];
+
+    if($pass !== $repass ){
+        echo 'errorp';
+        exit;
+    }
+
+    $pass = password_hash($pass,PASSWORD_DEFAULT);
+
+    $icon = null;
+    if($_FILES['icon']['error']== 0){
+        $icon = addslashes(file_get_contents($_FILES['icon']['tmp_name']));
+    }
+    $sql = "insert into member (account,pass,realname,icon)values(?,?,?,?)";
+    $stm = $mysqli->prepare($sql);
+    $stm->bind_param("ssss",$account,$pass,$realname,$icon);
+    $stm->execute();
+    if( $mysqli->affected_rows ===1){
+        header("location:login.php");
+    }else{
+        echo 'error';
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +40,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="" method="post" onsubmit='return isSubmit()' enctype="multipart/form-data">
+    <form action="register.php" method="post" onsubmit='return isSubmit()' enctype="multipart/form-data">
         <div class='reg'>
             <label for="account">帳號 : </label>
             <input type="text" name="account" id="account" onchange="isNewAccount()">
@@ -29,7 +62,7 @@
             <input type="file" name="icon" id="icon">
         </div>
         <div>
-            <input type="button" value="註冊">
+            <input type="submit" value="註冊">
         </div>
     </form>
     <script>
@@ -42,14 +75,14 @@
             return xhr;
         }
         function isNewAccount(){
-            let account = document.getElementById('account');
+            let account = document.getElementById('account').value;
             let xhr = getxhr();
             xhr.open('get',"./isNewAccount.php?account="+account,true);
             xhr.onreadystatechange = function(){
                 if(this.readyState === 4 && this.status === 200){
                     if(xhr.responseText === '0'){
                         document.getElementById('amsg').innerHTML = 'ok';
-                        isDate = true;
+                        isData = true;
                     }else{
                         document.getElementById('amsg').innerHTML = 'xx';
                     }
@@ -58,7 +91,7 @@
             xhr.send();
         }
         function isSubmit(){
-            reutrn isDate;
+            return isData;
         }
     </script>
 </body>

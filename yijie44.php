@@ -16,5 +16,8 @@ $stm->bind_param('i',$a);  //參數1為資料型態 參數2必須為參數型態
 $stm->execute();
 
 echo $mysqli->affected_rows;  //查詢影響行數
-echo $mysqli->error;
+echo $mysqli->error; //返回一个带有错误描述的字符串。如果没有错误发生则返回 ""。
+
+
+
 ?>
