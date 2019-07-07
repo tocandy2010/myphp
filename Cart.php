@@ -1,17 +1,23 @@
 <?php
 
 class Cart{
-    private $list = [];
+    private $list;
 
     public function __construct(){
-        
+        $this->list = [];
     }
 
     public function addProduct($pid,$qty){
+        $product = isset($this->list[$pid])?$this->list[$pid]:0;
         if(array_key_exists($pid,$this->list)){
             $this->list[$pid] +=$qty;
         }else{
             $this->list[$pid]=$qty;
+        }
+        if($this->list[$pid] > $product){
+            return true;
+        }else{
+            return false;
         }
     }
 

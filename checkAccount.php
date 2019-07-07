@@ -7,6 +7,13 @@ spl_autoload_register(function($class_name){
 
 session_start();
 
+$vcode = $_POST['vcode'];
+
+
+if($vcode !== $_SESSION['vcode']){
+    header('Location:login.php');
+}
+
 if(!isset($_REQUEST['account'])) header('Location:login.pnp');
 
 $account = $_REQUEST['account'];
